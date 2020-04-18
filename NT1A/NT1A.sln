@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NT1A-wAuthentication", "NT1A-wAuthentication\NT1A-wAuthentication.csproj", "{F25B6629-064C-45C4-93D3-19379B367E7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NT1A-Console", "NT1A-Console\NT1A-Console.csproj", "{F63D26A2-0E39-46BE-8871-2F8E3FE7B748}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F25B6629-064C-45C4-93D3-19379B367E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25B6629-064C-45C4-93D3-19379B367E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25B6629-064C-45C4-93D3-19379B367E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25B6629-064C-45C4-93D3-19379B367E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F63D26A2-0E39-46BE-8871-2F8E3FE7B748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F63D26A2-0E39-46BE-8871-2F8E3FE7B748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F63D26A2-0E39-46BE-8871-2F8E3FE7B748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F63D26A2-0E39-46BE-8871-2F8E3FE7B748}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A4CA57B-5B02-4DC3-BE60-2CF8720DAD63}
+	EndGlobalSection
+EndGlobal
