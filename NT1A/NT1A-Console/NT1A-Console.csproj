@@ -6,8 +6,4 @@
     <RootNamespace>NT1A_Console</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

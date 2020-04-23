@@ -11,11 +11,11 @@ namespace NT1A_Console
 
             #region Constructor por defecto
             Persona per1 = new Persona();
-                        
+
             MostrarEstadoInterno(per1);
 
             var barra = GenerarBarra(15, "/");
-            
+
 
             per1.PersonaId = 1;
             per1.SetNombre("Mariano");
@@ -55,6 +55,17 @@ namespace NT1A_Console
 
             direcPM.Numero = 888;
             MostrarEstadoInterno(per3);
+
+            #endregion
+
+            #region Animal
+            var miPichicho = new Perro();
+            miPichicho.Edad = 5;
+
+            miPichicho.Comer();
+            miPichicho.Ladrar();
+            miPichicho.Caminar();
+            miPichicho.Pipi();
 
             #endregion
 
