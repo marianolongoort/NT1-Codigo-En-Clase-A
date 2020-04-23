@@ -11,8 +11,11 @@ namespace NT1A_Console
 
             #region Constructor por defecto
             Persona per1 = new Persona();
-
+                        
             MostrarEstadoInterno(per1);
+
+            var barra = GenerarBarra(15, "/");
+            
 
             per1.PersonaId = 1;
             per1.SetNombre("Mariano");
@@ -44,6 +47,14 @@ namespace NT1A_Console
             Persona per3 = new Persona(3333333, "Pablo", "Marmol", direcPM);
 
             MostrarEstadoInterno(per3);
+            Pausa();
+
+            per3.Direccion.Numero = 777;
+            MostrarEstadoInterno(per3);
+            Pausa();
+
+            direcPM.Numero = 888;
+            MostrarEstadoInterno(per3);
 
             #endregion
 
@@ -55,6 +66,7 @@ namespace NT1A_Console
             ImprimirLinea("Id = " + persona.PersonaId);
             ImprimirLinea("Nombre = " + persona.GetNombre());
             ImprimirLinea("Apellido = " + persona.Apellido);
+            //ImprimirEnLinea("Mi Mascota = " + persona.Mascota.Nombre);
             //ImprimirLinea("Direccion = " + persona.Direccion);
 
             //Para poder acceder a los atributos de dirección y que no se presente una excepción, se debe disponer del objeto ya instanciado.
@@ -78,7 +90,7 @@ namespace NT1A_Console
                 msg = "Mostrando encabezado por defecto";
             }
 
-            ImprimirLinea(GenerarBarra(msg.Length, "#"));
+            ImprimirLinea( GenerarBarra(msg.Length, "#")   );
             ImprimirLinea(msg);
             ImprimirLinea(GenerarBarra(msg.Length, "-"));
         }

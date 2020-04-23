@@ -1,9 +1,15 @@
-﻿namespace NT1A_Console.Models
+﻿using System.Collections.Generic;
+
+namespace NT1A_Console.Models
 {
     public class Telefono
     {
         public int TelefonoId { get; set; }
         public int Numbero { get; set; }
         public string Tipo { get; set; }
+                
+        //public Persona Persona { get; set; }
+
+        public ICollection<Persona> Personas { get; set; }
     }
 }

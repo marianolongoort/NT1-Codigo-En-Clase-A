@@ -46,6 +46,7 @@ namespace NT1A_Console.Models
 
         public string Apellido { get; set; }
 
+
         //Relacion uno a uno
         public Mascota Mascota { get; set; }
                 
