@@ -6,7 +6,8 @@ namespace NT1A_Console
     class Program
     {
         static void Main(string[] args)
-        {
+        {           
+
             Console.WriteLine("¡¡¡Hola Curso!!!");
 
             #region Constructor por defecto
@@ -66,10 +67,13 @@ namespace NT1A_Console
             miPichicho.Ladrar();
             miPichicho.Caminar();
             miPichicho.Pipi();
-
             #endregion
 
+           
+
         }
+
+        
 
         private static void MostrarEstadoInterno(Persona persona)
         {
