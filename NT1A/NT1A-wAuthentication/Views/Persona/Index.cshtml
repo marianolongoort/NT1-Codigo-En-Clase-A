@@ -1,0 +1,28 @@
+﻿@model NT1A_wAuthentication.Models.Persona
+
+@{
+    if (@Model != null)
+    {
+        <label>Nombre:</label>@Model.Nombre
+        <br />
+        <label>Apellido:</label>@Model.Apellido
+        <br />
+        <label>Tarjeta de Credito:</label>
+        <span class="alert-danger">@Model.TarjetaCreditoNro</span>
+
+    }
+    else
+    {
+        <form action="/Persona/Index" method="post">
+            <input type="text" name="nombre" value="" placeholder="Nombre" />
+            <input type="text" name="apellido" value="" placeholder="Apellido" />
+            <input type="number" name="tj" value="" placeholder="Tarjeta Credito" />
+            <input type="submit" value="Enviar" />
+        </form>
+    }
+
+}
+
+
+
+

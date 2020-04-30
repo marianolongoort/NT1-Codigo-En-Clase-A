@@ -12,8 +12,6 @@ namespace NT1A_wAuthentication.Controllers
     {
         public IActionResult Index()
         {
-
-
             return View();
         }
 

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NT1A_wAuthentication.Models.Persona>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Tarjeta Credito
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Persona per in @Model)
+            {
+                var miclase = "";
+
+                if (per.Nombre == "Pedro")
+                {
+                    miclase = "tdAlertado";
+                }
+
+
+        <tr>
+            <td class="@miclase">
+                @per.Nombre
+            </td>
+            <td>
+                @per.Apellido
+            </td>
+            <td>
+                @per.TarjetaCreditoNro
+            </td>
+        </tr>
+    }
+        </tbody>                
+    </table>
+
