@@ -3,40 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NT1A_wAuthentication.Data;
 using NT1A_wAuthentication.Models;
+using NT1A_wAuthentication.Services;
 
 namespace NT1A_wAuthentication.Controllers
 {
     public class PersonaController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public PersonaController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
 
         public IActionResult ListarPersonas()
         {
-            List<Persona> personas = new List<Persona>();
-            personas.Add(new Persona() {
-                Apellido = "Longo",
-                Nombre = "Mariano",
-                TarjetaCreditoNro = 11112222
-            }
-            );
-
-            personas.Add(new Persona()
-            {
-                Apellido = "Picapiedra",
-                Nombre = "Pedro",
-                TarjetaCreditoNro = 33334444
-            }
-            );
-            personas.Add(new Persona()
-            {
-                Apellido = "Marmol",
-                Nombre = "Pablo",
-                TarjetaCreditoNro = 55556666
-            }
-            );
+            var per = PersonasRepositorio.GetPersona();
+            _context.Personas.Remove(per);
+                
+            _context.SaveChanges();
 
 
-            return View(personas);
+            return View(_context.Personas.ToList());
         }
 
         [HttpGet]
