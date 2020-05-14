@@ -35,14 +35,18 @@ namespace NT1A_wAuthentication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<MiDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"))
+                    Configuration.GetConnectionString("ORTDBCS"))
                 );
-            
+
+            //services.AddDbContext<MiDbContext>(options =>
+            //    options.UseInMemoryDatabase(databaseName: "MiBaseDeDatos")
+            //    );
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<MiDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -72,7 +76,7 @@ namespace NT1A_wAuthentication
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=personas}/{action=Index}/{id?}");
             });
         }
     }

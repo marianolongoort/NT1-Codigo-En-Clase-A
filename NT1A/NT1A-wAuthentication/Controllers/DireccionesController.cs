@@ -10,22 +10,23 @@ using NT1A_wAuthentication.Models;
 
 namespace NT1A_wAuthentication.Controllers
 {
-    public class PersonasController : Controller
+    public class DireccionesController : Controller
     {
         private readonly MiDbContext _context;
 
-        public PersonasController(MiDbContext context)
+        public DireccionesController(MiDbContext context)
         {
             _context = context;
         }
 
-        // GET: Personas
+        
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Personas.ToListAsync());
+            var direcciones = _context.Direcciones.Include(d => d.Persona);
+            return View(await direcciones.ToListAsync());
         }
 
-        // GET: Personas/Details/5
+        // GET: Direcciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas
-                .FirstOrDefaultAsync(m => m.PersonaId == id);
-            if (persona == null)
+            var direccion = await _context.Direcciones
+                .Include(d => d.Persona)
+                .FirstOrDefaultAsync(m => m.DireccionId == id);
+            if (direccion == null)
             {
                 return NotFound();
             }
 
-            return View(persona);
+            return View(direccion);
         }
 
-        // GET: Personas/Create
+        // GET: Direcciones/Create
         public IActionResult Create()
         {
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "PersonaId", "Nombre");
             return View();
         }
 
-        // POST: Personas/Create
+        // POST: Direcciones/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
+        public async Task<IActionResult> Create([Bind("DireccionId,Calle,Numero,CodigoPostal,PersonaId")] Direccion direccion)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(persona);
+                _context.Add(direccion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(persona);
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "PersonaId", "Apellido", direccion.PersonaId);
+            return View(direccion);
         }
 
-        // GET: Personas/Edit/5
+        // GET: Direcciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas.FindAsync(id);
-            if (persona == null)
+            var direccion = await _context.Direcciones.FindAsync(id);
+            if (direccion == null)
             {
                 return NotFound();
             }
-            return View(persona);
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "PersonaId", "Apellido", direccion.PersonaId);
+            return View(direccion);
         }
 
-        // POST: Personas/Edit/5
+        // POST: Direcciones/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
+        public async Task<IActionResult> Edit(int id, [Bind("DireccionId,Calle,Numero,CodigoPostal,PersonaId")] Direccion direccion)
         {
-            if (id != persona.PersonaId)
+            if (id != direccion.DireccionId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace NT1A_wAuthentication.Controllers
             {
                 try
                 {
-                    _context.Update(persona);
+                    _context.Update(direccion);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonaExists(persona.PersonaId))
+                    if (!DireccionExists(direccion.DireccionId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace NT1A_wAuthentication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(persona);
+            ViewData["PersonaId"] = new SelectList(_context.Personas, "PersonaId", "Apellido", direccion.PersonaId);
+            return View(direccion);
         }
 
-        // GET: Personas/Delete/5
+        // GET: Direcciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas
-                .FirstOrDefaultAsync(m => m.PersonaId == id);
-            if (persona == null)
+            var direccion = await _context.Direcciones
+                .Include(d => d.Persona)
+                .FirstOrDefaultAsync(m => m.DireccionId == id);
+            if (direccion == null)
             {
                 return NotFound();
             }
 
-            return View(persona);
+            return View(direccion);
         }
 
-        // POST: Personas/Delete/5
+        // POST: Direcciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var persona = await _context.Personas.FindAsync(id);
-            _context.Personas.Remove(persona);
+            var direccion = await _context.Direcciones.FindAsync(id);
+            _context.Direcciones.Remove(direccion);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonaExists(int id)
+        private bool DireccionExists(int id)
         {
-            return _context.Personas.Any(e => e.PersonaId == id);
+            return _context.Direcciones.Any(e => e.DireccionId == id);
         }
     }
 }

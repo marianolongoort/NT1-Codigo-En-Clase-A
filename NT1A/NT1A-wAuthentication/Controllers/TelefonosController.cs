@@ -10,22 +10,22 @@ using NT1A_wAuthentication.Models;
 
 namespace NT1A_wAuthentication.Controllers
 {
-    public class PersonasController : Controller
+    public class TelefonosController : Controller
     {
         private readonly MiDbContext _context;
 
-        public PersonasController(MiDbContext context)
+        public TelefonosController(MiDbContext context)
         {
             _context = context;
         }
 
-        // GET: Personas
+        // GET: Telefonos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Personas.ToListAsync());
+            return View(await _context.Telefonos.ToListAsync());
         }
 
-        // GET: Personas/Details/5
+        // GET: Telefonos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas
-                .FirstOrDefaultAsync(m => m.PersonaId == id);
-            if (persona == null)
+            var telefono = await _context.Telefonos
+                .FirstOrDefaultAsync(m => m.TelefonoID == id);
+            if (telefono == null)
             {
                 return NotFound();
             }
 
-            return View(persona);
+            return View(telefono);
         }
 
-        // GET: Personas/Create
+        // GET: Telefonos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Personas/Create
+        // POST: Telefonos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
+        public async Task<IActionResult> Create([Bind("TelefonoID,Numero,Tipo")] Telefono telefono)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(persona);
+                _context.Add(telefono);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(persona);
+            return View(telefono);
         }
 
-        // GET: Personas/Edit/5
+        // GET: Telefonos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas.FindAsync(id);
-            if (persona == null)
+            var telefono = await _context.Telefonos.FindAsync(id);
+            if (telefono == null)
             {
                 return NotFound();
             }
-            return View(persona);
+            return View(telefono);
         }
 
-        // POST: Personas/Edit/5
+        // POST: Telefonos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
+        public async Task<IActionResult> Edit(int id, [Bind("TelefonoID,Numero,Tipo")] Telefono telefono)
         {
-            if (id != persona.PersonaId)
+            if (id != telefono.TelefonoID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace NT1A_wAuthentication.Controllers
             {
                 try
                 {
-                    _context.Update(persona);
+                    _context.Update(telefono);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonaExists(persona.PersonaId))
+                    if (!TelefonoExists(telefono.TelefonoID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace NT1A_wAuthentication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(persona);
+            return View(telefono);
         }
 
-        // GET: Personas/Delete/5
+        // GET: Telefonos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas
-                .FirstOrDefaultAsync(m => m.PersonaId == id);
-            if (persona == null)
+            var telefono = await _context.Telefonos
+                .FirstOrDefaultAsync(m => m.TelefonoID == id);
+            if (telefono == null)
             {
                 return NotFound();
             }
 
-            return View(persona);
+            return View(telefono);
         }
 
-        // POST: Personas/Delete/5
+        // POST: Telefonos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var persona = await _context.Personas.FindAsync(id);
-            _context.Personas.Remove(persona);
+            var telefono = await _context.Telefonos.FindAsync(id);
+            _context.Telefonos.Remove(telefono);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonaExists(int id)
+        private bool TelefonoExists(int id)
         {
-            return _context.Personas.Any(e => e.PersonaId == id);
+            return _context.Telefonos.Any(e => e.TelefonoID == id);
         }
     }
 }
