@@ -12,9 +12,9 @@ namespace NT1A_wAuthentication.Controllers
 {
     public class PersonasController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly MiDbContext _context;
 
-        public PersonasController(ApplicationDbContext context)
+        public PersonasController(MiDbContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace NT1A_wAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro")] Persona persona)
+        public async Task<IActionResult> Create([Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace NT1A_wAuthentication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro")] Persona persona)
+        public async Task<IActionResult> Edit(int id, [Bind("PersonaId,Nombre,Apellido,TarjetaCreditoNro,FechaNacimiento,Dni")] Persona persona)
         {
             if (id != persona.PersonaId)
             {
@@ -124,10 +124,8 @@ namespace NT1A_wAuthentication.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Personas.FirstOrDefaultAsync(m => m.PersonaId == id);
-            
-
-
+            var persona = await _context.Personas
+                .FirstOrDefaultAsync(m => m.PersonaId == id);
             if (persona == null)
             {
                 return NotFound();

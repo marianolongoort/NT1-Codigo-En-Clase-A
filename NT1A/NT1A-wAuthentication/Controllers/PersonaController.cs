@@ -11,9 +11,9 @@ namespace NT1A_wAuthentication.Controllers
 {
     public class PersonaController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly MiDbContext _context;
 
-        public PersonaController(ApplicationDbContext context)
+        public PersonaController(MiDbContext context)
         {
             _context = context;
         }

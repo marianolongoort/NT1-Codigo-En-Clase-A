@@ -21,6 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.TarjetaCreditoNro)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dni)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +41,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TarjetaCreditoNro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dni)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PersonaId">Edit</a> |
